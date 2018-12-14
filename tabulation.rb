@@ -1,40 +1,36 @@
 class Tabulation
   def getNthUglyNo(n)
-
-    ugly = Array.new(n)
-    ugly[0] = 1
-
+    $uglyp = Array.new(n) # Init variables
+    $uglyp[0] = 1
     i2 = 0
     i3 = 0
     i5 = 0
-
     next_multiple_of_2 = 2
     next_multiple_of_3 = 3
     next_multiple_of_5 = 5
 
     for l in 1..n
+      $uglyp[l] = [next_multiple_of_2, next_multiple_of_3, next_multiple_of_5].min # Get min value
 
-      ugly[l] = [next_multiple_of_2, next_multiple_of_3, next_multiple_of_5].min
-
-      if ugly[l] == next_multiple_of_2
+      if $uglyp[l] == next_multiple_of_2 # Check prime factors
         i2 += 1
-        next_multiple_of_2 = ugly[i2] * 2
+        next_multiple_of_2 = $uglyp[i2] * 2
       end
 
-      if ugly[l] == next_multiple_of_3
+      if $uglyp[l] == next_multiple_of_3 # Check prime factors
         i3 += 1
-        next_multiple_of_3 = ugly[i3] * 3
+        next_multiple_of_3 = $uglyp[i3] * 3
       end
 
-      if ugly[l] == next_multiple_of_5
+      if $uglyp[l] == next_multiple_of_5 # Check prime factors
         i5 += 1
-        next_multiple_of_5 = ugly[i5] * 5
+        next_multiple_of_5 = $uglyp[i5] * 5
       end
-
     end
+    $t1t = Time.now # end time procedure
+  end
 
-    return ugly[-2]
+  def time_diff_milli(finish, start) # Elapsed time
+    puts "Elapsed time tabulation: #{(finish - start) * 1000.0} ms"
   end
 end
-c = Tabulation.new
-print c.getNthUglyNo(150)
