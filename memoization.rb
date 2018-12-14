@@ -1,5 +1,4 @@
-class Ugly
-
+class Memoization
   $ugly = Array.new
   $ugly[0] = 1
   $i2 = 0
@@ -42,7 +41,7 @@ class Ugly
 
 end
 
-c = Ugly.new
+c = Memoization.new
 c.calculate_list(150, 0)
 print $ugly[-2]
 
